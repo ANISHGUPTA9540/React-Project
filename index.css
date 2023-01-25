@@ -1,0 +1,26 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.Header{
+    display: flex;
+    border: 2.5px solid red;
+    justify-content: space-between;
+    align-items: center;
+    background: yellow;
+    
+}
+.Header>img{
+    height: 100px;
+    width: 120px;
+}
+.Navbar>ul{
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+}
+.Navbar>ul>li{
+    padding: 15px;
+}
