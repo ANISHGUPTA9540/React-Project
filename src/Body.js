@@ -4,15 +4,30 @@ import {restaurantList} from "../config";
 import { useState } from "react";
 
 const Searchbar = () => {
+    const [searchText,setsearchText]=useState("india");
+    const [input,setinput]=useState("false");
     
     return (
         <div className="search-container">
             <input type="text"
              classname="search-input"
              placeholder="search"
-             value={""}
+             value={searchText}
+             onClick={(e)=>{
+                setsearchText(e.target.value);
+             }}
             />
             <button className="search-btn">search</button>
+            <h1>{input}</h1>
+            <button onClick={()=>{
+            if (input==="false"){
+                setinput("true");
+            }else {   
+                    setinput("false");
+
+                }
+            }}
+            >search</button>
         </div>
     );
 }
