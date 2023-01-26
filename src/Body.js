@@ -1,9 +1,19 @@
-import {IMG_CDN_URL} from "./contant";
-import {restaurantList} from "./contant";
+import { useState } from "react";
+import {IMG_CDN_URL} from "../config";
+import {restaurantList} from "../config";
+import { useState } from "react";
 
 const Searchbar = () => {
+    
     return (
-        <h1>searchbar</h1>
+        <div className="search-container">
+            <input type="text"
+             classname="search-input"
+             placeholder="search"
+             value={""}
+            />
+            <button className="search-btn">search</button>
+        </div>
     );
 }
 
