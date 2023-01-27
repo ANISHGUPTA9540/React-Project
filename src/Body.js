@@ -3,34 +3,14 @@ import {IMG_CDN_URL} from "../config";
 import {restaurantList} from "../config";
 import { useState } from "react";
 
-const Searchbar = () => {
-    const [searchText,setsearchText]=useState("india");
-    const [input,setinput]=useState("false");
-    
-    return (
-        <div className="search-container">
-            <input type="text"
-             classname="search-input"
-             placeholder="search"
-             value={searchText}
-             onClick={(e)=>{
-                setsearchText(e.target.value);
-             }}
-            />
-            <button className="search-btn">search</button>
-            <h1>{input}</h1>
-            <button onClick={()=>{
-            if (input==="false"){
-                setinput("true");
-            }else {   
-                    setinput("false");
+function filterData(searchText,restaurants){
+   const filterData= restaurants.filter((restaurant)=>restaurant.data.name.includes(searchText));
+    return filterData;
 
-                }
-            }}
-            >search</button>
-        </div>
-    );
 }
+
+
+
 
 // const Burgerking = {
 //     name: "Burger King",
@@ -53,19 +33,35 @@ const ResturantCard = ({cloudinaryImageId,name,cuisines,totalRatingsString}) => 
 
 
 const Body = () => {
+    const [restaurants,setRestaurants]=useState(restaurantList);
+    const [searchText,setSearchText]=useState("");
     return (
         <>
-            <Searchbar />
+        <div className="search-container">
+        <input type="text"
+         classname="search-input"
+         placeholder="search"
+         value={searchText}
+         onChange={(e)=>{
+            setSearchText(e.target.value);
+         }}
+        />
+        <button className="search-btn" onClick={()=>{
+            const data = filterData(searchText,restaurants);
+            setRestaurants(data);
+        }}>search</button>
+    </div>
+        
+           
             <div className="resturant-list">
-                {
-                 restaurantList.map((restaurant) => {
+                {restaurants.map((restaurant) => {
                     return <ResturantCard {...restaurant.data}/>;
 
                     })
                 }
             </div>
-                
-        </>
+            </>
+       
     )
 }
 export default Body;
